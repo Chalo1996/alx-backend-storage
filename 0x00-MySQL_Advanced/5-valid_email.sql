@@ -5,4 +5,4 @@ CREATE TRIGGER reset_valid_email
 BEFORE INSERT ON users
 FOR EACH ROW
 UPDATE users SET email = users.valid_email
-WHERE email NOT valid_email;
+WHERE email NOT IN (valid_email);
