@@ -1,0 +1,3 @@
+// document in the collection school
+coll = db.my_db.school
+coll.insert({'name': 'Holberton school'})
