@@ -1,3 +1,2 @@
-// document in the collection school
-coll = db.my_db.school
-coll.insert({'name': 'Holberton school'})
+// inserts document in the collection school
+db.my_db.school.insert({'name': 'Holberton school'})
