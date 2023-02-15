@@ -10,7 +10,8 @@ class Cache:
     """Cache class."""
     def __init__(self):
         """init method."""
-        self._redis = redis.Redis()
+        __r = redis.Redis()
+        self._redis = __r
         self._redis.flushdb()
 
     def store(self, data: BinaryIO) -> str:
