@@ -13,7 +13,14 @@ class Cache:
         self._redis.flushdb()
 
     def store(self, data: bytes) -> str:
-        """store method."""
+        """store: takes a data argument and returns a string.
+
+        Args:
+            data (bytes): data to store.
+
+        Returns:
+            str: key.
+        """
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return (key)
