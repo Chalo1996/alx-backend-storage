@@ -1,5 +1,4 @@
 // adds a new attribute to a document in
 // the collection school
-db.school.update({"name": "Holberton school"},
-    { $set: { "address": "972 Mission street" } },
-    { $multi: true } )
+db.getCollection( "school" ).update( { 'name': 'Holberton School' },
+{ $set: { 'address': '972 Mission street' } }, {$multi: true} );
