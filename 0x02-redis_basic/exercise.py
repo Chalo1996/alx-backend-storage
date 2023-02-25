@@ -8,7 +8,6 @@ from typing import Union, Callable
 
 class Cache:
     """Cache class."""
-
     def __init__(self):
         """init method."""
         self._redis = redis.Redis()
