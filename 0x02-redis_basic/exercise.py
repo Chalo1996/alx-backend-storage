@@ -101,5 +101,6 @@ class Cache:
         Returns:
             int: data.
         """
-        data = self._redis.get(key)
-        return int(data.decode('utf-8'))
+        if key:
+            data = self._redis.get(key)
+            return int(data.decode('utf-8'))
