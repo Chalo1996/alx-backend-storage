@@ -79,7 +79,7 @@ class Cache:
         return data
 
     def get_str(self, key: str) -> str:
-        """get_str: takes a key string argument and returns the
+        """get_str: takes a key string argument and returns the\
         string value stored in Redis.
 
         Args:
@@ -90,10 +90,10 @@ class Cache:
         """
         if key:
             data = self._redis.get(key)
-            return data.decode('utf-8')
+        return data.decode('utf-8')
 
     def get_int(self, key: str) -> int:
-        """get_int: takes a key string argument and returns the
+        """get_int: takes a key string argument and returns the\
         integer value stored in Redis.
 
         Args:
@@ -104,4 +104,4 @@ class Cache:
         """
         if key:
             data = self._redis.get(key)
-            return int(data.decode('utf-8'))
+        return int(data.decode('utf-8'))
