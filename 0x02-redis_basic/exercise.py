@@ -88,8 +88,9 @@ class Cache:
         Returns:
             str: data.
         """
-        data = self._redis.get(key)
-        return data.decode('utf-8')
+        if key:
+            data = self._redis.get(key)
+            return data.decode('utf-8')
 
     def get_int(self, key: str) -> int:
         """get_int: takes a key string argument and returns the
