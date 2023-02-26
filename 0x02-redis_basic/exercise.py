@@ -59,7 +59,7 @@ class Cache:
 
     def get(self,
             key: str,
-            fn: callable = None) -> Union[str,
+            fn: Callable = None) -> Union[str,
                                           bytes,
                                           int,
                                           float]:
