@@ -43,6 +43,12 @@ class Cache:
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Generates a random key and stores the data in the redis\
             server.
+
+        Args:
+            data (Union[str, bytes, int, float]): The data to be stored.
+
+        Returns:
+            str: The key generated.
         """
         key = str(uuid.uuid4())
         self._redis.set(key, data)
