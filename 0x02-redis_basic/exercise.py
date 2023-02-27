@@ -40,11 +40,9 @@ class Cache:
     def get_str(self, key: bytes) -> str:
         """Converts data to UTF-8 format."""
         if key:
-            data = self._redis.get(key)
-            return (data.decode("utf-8"))
+            return (key.decode("utf-8"))
 
     def get_int(self, key: bytes) -> int:
         """Converts data to integer format."""
         if key:
-            data = self._redis.get(key)
-            return int(data.decode("utf-8"))
+            return int(key.decode("utf-8"))
