@@ -37,12 +37,16 @@ class Cache:
             return fn(newkey)
         return self._redis.get(key)
 
-    def get_str(self, key: bytes) -> str:
+    def get_str(self, key: str) -> str:
         """Converts data to UTF-8 format."""
         if key:
-            return (key.decode("utf-8"))
+            return self.get(
+                key, lambda d: d.decode("utf-8")
+            )
 
-    def get_int(self, key: bytes) -> int:
+    def get_int(self, key: str) -> int:
         """Converts data to integer format."""
         if key:
-            return int(key.decode("utf-8"))
+            return self.get(
+                key, lambda d: int(d.decode("utf-8"))
+            )
