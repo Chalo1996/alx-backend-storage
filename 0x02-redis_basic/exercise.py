@@ -13,6 +13,7 @@ class Cache:
             keys temporalily, and deletes the keys when the execution of\
                 the instance stops.
     """
+
     def __init__(self):
         """Instantiates a new connection to redis. Flushes the redis\
             server once connection terminates.
@@ -27,3 +28,23 @@ class Cache:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Callable
+            = None) -> Union[str, bytes, int, float]:
+        """Used to convert data back to desired format."""
+        newkey = self._redis.get(key)
+        if fn:
+            return fn(newkey)
+        return self._redis.get(key)
+
+    def get_str(self, key: bytes) -> str:
+        """Converts data to UTF-8 format."""
+        if key:
+            data = self._redis.get(key)
+            return (data.decode("utf-8"))
+
+    def get_int(self, key: bytes) -> int:
+        """Converts data to integer format."""
+        if key:
+            data = self._redis.get(key)
+            return int(data.decode("utf-8"))
