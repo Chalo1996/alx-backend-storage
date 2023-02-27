@@ -18,7 +18,6 @@ print(local_redis.get(key))
 
 
 print("\t\t\tSECOND\n")
-cache = Cache()
 
 TEST_CASES = {
     b"foo": None,
