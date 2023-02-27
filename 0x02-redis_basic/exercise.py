@@ -8,6 +8,22 @@ from typing import Union, Callable, Optional
 from functools import wraps
 
 
+def count_calls(method: Callable) -> Callable:
+    """Take a function and return a function that counts how many\
+        times the function was called.
+    Args:
+        method (Callable): The function to be wrapped.
+    Returns:
+        Callable: The wrapped function.
+    """
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+    return wrapper
+
+
 class Cache:
     """Simulates the Caching of redis keys. Creates a new connection\
         everytime an instance of this class is created, saves the\
@@ -21,23 +37,6 @@ class Cache:
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
-
-    def count_calls(method: Callable) -> Callable:
-        """Take a function and return a function that counts how many\
-            times the function was called.
-
-        Args:
-            method (Callable): The function to be wrapped.
-
-        Returns:
-            Callable: The wrapped function.
-        """
-        @wraps(method)
-        def wrapper(self, *args, **kwargs):
-            key = method.__qualname__
-            self._redis.incr(key)
-            return method(self, *args, **kwargs)
-        return wrapper
 
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
