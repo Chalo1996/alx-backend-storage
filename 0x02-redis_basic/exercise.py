@@ -27,8 +27,7 @@ class Cache:
             times the function was called.
         """
         @wraps(method)
-        def wrapper(self, *args, **kwargs) -> Callable:
-            """Wrapper function."""
+        def wrapper(self, *args, **kwargs):
             key = method.__qualname__
             self._redis.incr(key)
             return method(self, *args, **kwargs)
