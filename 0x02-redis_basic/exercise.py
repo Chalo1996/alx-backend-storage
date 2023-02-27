@@ -25,6 +25,12 @@ class Cache:
     def count_calls(method: Callable) -> Callable:
         """Take a function and return a function that counts how many\
             times the function was called.
+
+        Args:
+            method (Callable): The function to be wrapped.
+
+        Returns:
+            Callable: The wrapped function.
         """
         @wraps(method)
         def wrapper(self, *args, **kwargs):
